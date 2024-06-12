@@ -40,6 +40,7 @@ jobs:
   
       - name: Build Docker image
         run: docker build -t ${{ secrets.DOCKER_USERNAME }}/as221s5_traductor:latest .
+        
   
       - name: Push Docker image to Docker Hub
         run: docker push ${{ secrets.DOCKER_USERNAME }}/as221s5_traductor:latest
