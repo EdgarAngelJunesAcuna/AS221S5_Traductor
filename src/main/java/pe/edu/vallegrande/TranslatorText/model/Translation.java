@@ -17,4 +17,5 @@ public class Translation {
     private String translated_text;
     private String from_lang;
     private String to_lang;
+    private String status;
 }
