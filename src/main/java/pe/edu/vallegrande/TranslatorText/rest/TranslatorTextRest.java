@@ -55,8 +55,7 @@ public class TranslatorTextRest {
 
 	@PutMapping("/edit/{id}")
 	public Mono<ResponseEntity<String>> editTranslation(@PathVariable Long id,
-														@RequestBody Map<String, String> requestBody) {
-
+	@RequestBody Map<String, String> requestBody) {
 		String newText = requestBody.get("request_text");
 		String from = requestBody.get("from_lang");
 		String to = requestBody.get("to_lang");
