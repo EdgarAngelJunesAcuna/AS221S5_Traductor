@@ -12,7 +12,7 @@ public class CorsConfig {
     @Bean
     public CorsWebFilter corsWebFilter() {
         CorsConfiguration corsConfig = new CorsConfiguration();
-        corsConfig.addAllowedOrigin("http://localhost:4200"); // El frontend de Angular corre en este puerto
+        corsConfig.addAllowedOrigin("https://glorious-broccoli-45r7vr7x46w2pp5-4200.app.github.dev"); // El frontend de Angular corre en este puerto
         corsConfig.addAllowedMethod("*"); // Permitir todos los métodos (GET, POST, etc.)
         corsConfig.addAllowedHeader("*"); // Permitir todas las cabeceras
         corsConfig.setAllowCredentials(true); // Permitir credenciales

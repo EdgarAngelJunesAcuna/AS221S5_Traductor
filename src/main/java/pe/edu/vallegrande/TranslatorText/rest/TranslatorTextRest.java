@@ -68,8 +68,9 @@ public class TranslatorTextRest {
 
 	@DeleteMapping("/delete/{id}")
 	public Mono<ResponseEntity<Void>> deleteTranslation(@PathVariable Long id) {
-		return translatorTextService.deleteTranslation(id).then(Mono.just(ResponseEntity.ok().<Void>build()))
-				.onErrorReturn(ResponseEntity.notFound().build());
+		return translatorTextService.deactivate(id)
+				.map(unused -> ResponseEntity.ok().<Void>build())
+				.defaultIfEmpty(ResponseEntity.notFound().build());
 	}
 
 	@GetMapping("/actives")
@@ -85,6 +86,13 @@ public class TranslatorTextRest {
 	@GetMapping("/{id}")
 	public Mono<ResponseEntity<Translation>> getTranslationById(@PathVariable Long id) {
 		return translatorTextService.findById(id).map(translation -> ResponseEntity.ok().body(translation))
+				.defaultIfEmpty(ResponseEntity.notFound().build());
+	}
+
+	@PutMapping("/activate/{id}")
+	public Mono<ResponseEntity<String>> activateTranslation(@PathVariable Long id) {
+		return translatorTextService.activate(id)
+				.map(activatedTranslation -> ResponseEntity.ok().body("Translation activated successfully"))
 				.defaultIfEmpty(ResponseEntity.notFound().build());
 	}
 }

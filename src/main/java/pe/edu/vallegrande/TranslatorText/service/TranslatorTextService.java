@@ -117,10 +117,12 @@ public class TranslatorTextService {
 
 	@Transactional
 	public Mono<Translation> deactivate(Long id) {
-		return translatorTextRepository.findById(id).flatMap(translation -> {
-			translation.setStatus("I");
-			return translatorTextRepository.save(translation);
-		});
+		// This method is already in place and should logically deactivate the translation
+		return translatorTextRepository.findById(id)
+				.flatMap(translation -> {
+					translation.setStatus("I");
+					return translatorTextRepository.save(translation);
+				});
 	}
 
 	public Mono<Void> deleteTranslation(Long id) {
